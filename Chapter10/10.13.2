@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+void copy_point(double *source, double *tag1, int len);
+void copy_array(double *source, double *tag2, int len);
+
+main()
+{
+	
+	double source[4] = {1.1, 1.2, 1.3, 1.5};
+	double tag1[4];
+	double *p1;
+	double *p2;
+	p1 = tag1;
+	p2 = tag1;
+	//double tag2[4];
+	
+	int len = sizeof(source) / sizeof(double);
+
+	for (int i = 0; i < len; i++) {
+		printf("%f  \n ", *p1++);
+	}
+
+	//copy_point(source, tag1, len);
+	copy_array(source, tag1, len);
+
+	for (int j = 0; j < len; j++) {
+		printf("%f  \n ", *p2++);
+	}
+}
+
+void copy_point(double *source, double *tag1, int len)
+{
+	for (int i = 0; i < len; i++) {
+		*tag1++ = *source++;
+	}
+}
+
+void copy_array(double *source, double tag2[], int len)
+{
+	for (int i = 0; i < len; i++) {
+		tag2[i] = source[i];
+	}
+}
