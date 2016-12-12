@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+// 实现： 找出数组中最大元素的索引 
+
+int find_max_index(int array[], int len);
+	
+main()
+{
+	int arr[5] = {28, 81, 941, 62, 491};
+	int len = sizeof(arr) / sizeof(int);
+	int index = 0;
+	index = find_max_index(arr, len);
+	printf("数组最大的值的索引是： %d \n", index);
+}
+
+int find_max_index(int array[], int len)
+{
+	int current_max = 0;
+	int index = 0;
+	for (int i = 0; i < len; i++) {
+		if (array[i] > current_max ) {
+			current_max = array[i];
+			index = i;
+		}
+	}
+	return index;
+}
