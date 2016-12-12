@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+// 实现： 返回一个数组中 最大 和 最小 元素之间的差值
+
+int find_max_index(int array[], int len);
+int find_min_index(int array[], int len);
+
+main()
+{
+	int arr[5] = {51,82,49,37,11};
+	int len = sizeof(arr) / sizeof(int);
+	int max_index = 0;
+	int min_index = 0;
+
+	max_index = find_max_index(arr, len);
+	min_index = find_min_index(arr, len);
+
+	for (int b = 0; b < len; b++) {
+		printf(" %d ", arr[b]);
+	}
+
+	printf("\n");
+	printf("数组中最大的元素值的索引为：  =  %d \n", max_index);
+	printf("数组中最小的元素值的索引为：  =  %d \n", min_index);
+	printf("她们之间的元素值的差距是： %d \n", arr[max_index] - arr[min_index]);
+	printf("她们之间的元素位置的差距是： %d \n", abs(max_index - min_index));
+}
+
+int find_max_index(int array[], int len)
+{
+	int current_max = 0;
+	int index = 0;
+	for (int i = 0; i < len; i++) {
+		if (array[i] > current_max ) {
+			current_max = array[i];
+			index = i;
+		}
+	}
+	return index;
+}
+
+int find_min_index(int array[], int len)
+{
+	int current_min = 1000000000;
+	int index = 0;
+	for (int i = 0; i < len; i++) {
+		if (array[i] < current_min ) {
+			current_min = array[i];
+			index = i;
+		}
+	}
+	return index;
+}
