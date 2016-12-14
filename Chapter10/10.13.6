@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+// 实现： 初始化一个二维double数组， 并复制到另外一个二维数组中
+
+#define ROWS 2
+
+void copy_array(int arr[], int tag[], int len);
+void dest(int arr[][ROWS], int tag[][ROWS], int len);
+
+main()
+{
+	double arr[2][ROWS] = { {10.1, 20.9}, {80.2, 70.6} };
+	double tag[2][ROWS];
+	int len = sizeof(arr[0]) / sizeof(double);
+	dest(arr, tag, len);
+	
+	printf("tag[0][0] = %.5f \n", tag[0][0]);
+	printf("tag[0][1] = %.5f \n", tag[0][1]);
+	printf("tag[1][0] = %.5f \n", tag[1][0]);
+	printf("tag[1][1] = %.5f \n", tag[1][1]);
+
+}
+
+void dest(double arr[][ROWS], double tag[][ROWS], int len)
+{
+	for (int i = 0; i < len; i++) {
+		int lenSub = sizeof(arr[i]) / sizeof(double);
+		copy_array(arr[i], tag[i], lenSub);
+	}
+}
+
+void copy_array(double arr[], double tag[], int len)
+{
+	for (int i = 0; i < len; i++) {
+		tag[i] = arr[i];
+	}
+}
+
+
+
+
+
+
+
+
+
+
