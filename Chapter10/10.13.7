@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+// 实现： 把一个包含7个元素的数组内的第3至第5的元素， 复制到一个包含3个元素的数组当中去·
+
+void copy_array(int arr[], int tag[], int len);
+
+main()
+{
+	int array[7] = {100, 200, 300, 400, 500, 600, 700};
+	int tag[3];
+	int len = sizeof(array) / sizeof(int);
+	copy_array(array, tag, len);
+	
+	printf("tag[0] = %d \n", tag[0]);
+	printf("tag[1] = %d \n", tag[1]);
+	printf("tag[2] = %d \n", tag[2]);
+
+}
+
+void copy_array(int arr[], int tag[], int len)
+{
+	int k = 0;
+	for (int i = 0; i < len; i++) {
+		if (i >= 3 && i <= 5) {
+			tag[k++] = arr[i];
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
