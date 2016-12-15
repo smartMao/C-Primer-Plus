@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+// 实现： 一个基于变长数组的函数把该数组复制到另外一个变长数组中 
+
+int array_copy(int rows, int cols, int arr[rows][cols], int temp[rows][cols]);
+
+int main(int argc, char *argv[]) {
+	
+	int rows = 3;
+	int cols = 5;
+	int array[3][5] = {{71,22,93,12,77},{88,99,81,62,93},{22,55,11,52,83}};
+	int temp[3][5];
+	array_copy(rows, cols, array, temp); // 拷贝
+	 
+	for(int i = 0; i < rows; i++){
+		for(int j = 0; j < cols; j++){
+			printf("temp[%d][%d] = %d \n", i, j, temp[i][j]);
+		}
+	}
+}
+
+int array_copy(int rows, int cols, int arr[rows][cols], int temp[rows][cols])
+{
+	int res = rows * cols;
+	for(int i = 0; i < rows; i++){
+		for(int j = 0; j < cols; j++){
+			temp[i][j] = arr[i][j];
+		}
+	}
+	return temp;
+}
