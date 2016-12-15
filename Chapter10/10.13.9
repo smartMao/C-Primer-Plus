@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+
+// 实现： 把两个数组内的元素相加， 存储到第三个数组当中去
+
+int iSum(int array1, int array2, int array3, int len1, int len2);
+
+main()
+{
+
+	int array1[5] = {12, 62, 91, 71, 63};
+	int array2[5] = {72, 24, 91, 67, 29};
+	int array3[5];
+
+	int len1 = sizeof(array1) / sizeof(int);
+	int len2 = sizeof(array2) / sizeof(int);
+
+	iSum(array1, array2, array3, len1, len2);
+
+	for (int i = 0; i < len1; i++) {
+		printf("array3[%d] = %d \n", i, array3[i]);
+	}
+}
+
+int iSum(int array1[], int array2[], int array3[], int len1, int len2)
+{
+	for (int i = 0; i < len1; i++) {
+		array3[i] = array1[i] + array2[i];
+	}
+}
