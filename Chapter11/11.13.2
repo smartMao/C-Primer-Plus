@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+
+// 实现：读入N个字符，存入数组中，输出
+
+
+main()
+{
+	int count = 0;
+	char list[100];
+	char c;
+	while ((c = getchar()) != EOF && count < 10 &&  c != ' ') {
+		list[count] = c;
+		count++;
+	}
+
+	printf("%s \n", list);
+}
+
+
+
