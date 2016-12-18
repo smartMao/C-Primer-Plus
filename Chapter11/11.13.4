@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+
+// 搜索字符串
+
+const char *strSearch(const char *source, const char target);
+
+int main()
+{
+	const unsigned int LEN = 128;
+	//char str[LEN];
+	char str[128];
+	char ch;
+	const char *ptr;
+
+	while (1) {
+
+		puts("输入要被搜索的字符串 （回车结束) :");
+		//__fpurge(stdin);
+		fgets(str, LEN, stdin);
+		if (*str == '\n') {
+			break;
+		}
+
+		puts("输入要搜索的字符串 （回车结束）:");
+		ch = getchar();
+		ptr = strSearch(str, ch);
+		if (ptr == NULL) {
+			puts("Not Found");
+		}
+		else {
+			puts("Found!");
+			printf("Char: %c " , *ptr);
+			printf("Address: %p " , ptr);
+		}
+	}
+	return 0;
+}
+
+
+const char *strSearch(const char *source, const char target)
+{
+	const char *ptr = source;
+	while (*ptr != '\0') {
+		if (*ptr == target) {
+			break;
+		}
+		ptr++;
+	}
+
+	if (*ptr){
+		return ptr;
+	}else{
+		return NULL; 
+	} 
+}
