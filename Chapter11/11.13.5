@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+
+// 实现： 某个字符是否在某个字符串当中， 返回 1/0
+
+
+int is_within(char a, char *hack);
+
+main()
+{
+	printf("%d \n", is_within('s', "asd"));
+}
+
+int is_within(char a, char *hack)
+{
+	while (*hack) {
+		if (*hack++ == a) {
+			return 1;
+		}
+	}
+	return 0;
+}
