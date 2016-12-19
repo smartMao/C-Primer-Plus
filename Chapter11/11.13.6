@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+
+// 实现： istrncpy(s1, s2, n) 函数从s2复制n个字符到s1中，s2多则被截取，s2少则被填充空值
+
+void istrncpy(char s1[], char s2[], int n);
+
+
+main()
+{
+
+	char s1[100] = "aabb";
+	char s2[10] = "fuck";
+	int n = 7;
+	istrncpy(s1, s2, n);
+
+	printf("%s \n", s1);
+}
+
+void istrncpy(char s1[], char s2[], int n)
+{
+	for (int i = 0; i < n; i++) {
+		if (*s2) {
+			*s1++ = *s2++;
+		}
+		else {
+			*s1++ = '-';
+		}
+	}
+}
