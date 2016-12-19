@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+
+// 实现： turn(s1, s2) 函数将s1反序，之后保存到s2中
+
+void turn(char s1[], char s2[], int len);
+
+main()
+{
+	char s1[] = "fuck";
+	char s2[6];
+	int len = sizeof(s1) / sizeof(char);
+
+	turn(s1, s2, len);
+	printf("%s \n", s2);
+}
+
+void turn(char s1[], char s2[], int len)
+{
+	int k = 0;
+	for (int i = len-2; i >= 0; i--) {
+		s2[k++] = *(s1+i);
+	}
+	*(s2+k) = '\0';
+}
