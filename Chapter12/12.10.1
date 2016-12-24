@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+double mode1 = 7.2; // 每百公里油耗
+double mode2 = 2.3;
+
+int mode; // 1=英里每加仑，2=升每百公里
+double km; // 公里或英里
+
+double res; // 根据输入的公里或英里，计算出来的需要升或加仑
+
+
+void setMode(void);
+void inputKm(void);
+void calc(void);
+
+// 根据用户输入公里数、英里，计算出消耗的升、加仑
+main()
+{
+	setMode();
+	while (1) {
+		inputKm();
+		calc();
+		setMode();
+	}
+}
+
+void calc(void)
+{
+	if (mode == 1) {
+		float res1 = (km / 100);
+		res = res1 * mode1;
+		printf("行驶 %2.f 公里所需油耗是 %.2f 升\n", km, res);
+	}
+	else if (mode == 2) {
+		float res1 = (km / 100);
+		res = res1 * mode2;
+		printf("行驶 %2.f 英里所需油耗是 %.2f 加仑\n", km, res);
+	}
+}
+
+void setMode(void)
+{
+	puts("");
+	puts("请选择计算模式（1=升每百公里, 2=英里每加仑）:");
+	scanf_s("%d", &mode);
+}
+
+void inputKm(void) 
+{
+	if (mode == 1) {
+		puts("请输入公里数：");
+	}else if(mode == 2) {
+		puts("请输入英里数：");
+	}
+	scanf_s("%lf", &km);
+}
