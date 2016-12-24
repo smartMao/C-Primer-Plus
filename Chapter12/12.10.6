@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+// 随机产生 1000 个 1-10 ， 并使用1-10个种子进行计算，并统计在不同的种子下，随机数出现的几率
+
+int n = 1000;
+double count[10] = {0};
+
+main()
+{
+	for (int k = 1; k <= 10; k++) {
+		srand(k); // 写种子， 让后面的 rand() 使用
+		for (int i = 0; i < n; i++) {
+			int index = rand() % 10000 % 1000 % 100 % 10;
+			count[index]++;
+		}
+
+		// 计算百分比
+		for (int j = 0; j < 10; j++) {
+			count[j] *= 0.1;
+		}
+		printf("种子为 %d 时，     1       2       3       4       5       6       7       8       9       10   的分布 \n", k );
+			printf("\t");
+		for (int j = 0; j < 10; j++) {
+			printf("\t");
+			printf(" %.1f%% ", count[j]);
+		}
+		printf("\n");
+	}
+}
