@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+main(int argc, char * argv[])
+{
+	int i = 0;
+	double res = 0;
+	if (argc == 2) {
+		// 从命令行参数读取输入文件
+		FILE *fp;
+		if ((fp = fopen(argv[1], "r")) == NULL) {
+			exit(EXIT_FAILURE);
+		}
+
+		double list[1000];
+		fread(&list, sizeof(double), 1000, fp);
+
+		long double res = 0.0;
+		int i = 0;
+		while (list[++i] > 0) {
+			res += list[i];
+		}
+	}
+	else if(argc == 1) {
+		// 从标准输入读取 输入
+		double numbers = 0;
+		while ((numbers = getchar()) != 'S') {
+			i++;
+			res += numbers;
+		}
+	}
+
+	printf("结果总数： %lf \n", res);
+	printf("浮点数的数量： %d \n", i);
+	printf("平均数： %lf \n", res / i);
+			
+	return 0;
+} 
