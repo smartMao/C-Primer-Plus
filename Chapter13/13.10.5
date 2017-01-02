@@ -1,0 +1,130 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+
+
+// 实现 linux 的 grep 功能 
+
+#define FILE_NAME_LEN 100
+#define FILE_CONTENT_MAX_LEN 1000000
+#define GREP_MAX_LEN 100
+#define GREP_RESULT_LEN 200
+#define GREP_RESULT_LINE 10
+
+
+int iStrlen(char *c);
+int input_grep(char *grep);
+int load_file_content(char *list);
+int grep_process(char *list, char *grep, int content, int grepStrlen, char lineResult[][GREP_RESULT_LEN]);
+
+
+main()
+{
+	char *lineResult[GREP_RESULT_LINE][GREP_RESULT_LEN];
+
+	int resultLen = 0;
+	int grepStrLen = 0;
+	int contentLen = 0;
+
+	char list[FILE_CONTENT_MAX_LEN];
+	char grep[GREP_MAX_LEN];
+	
+	contentLen = load_file_content(&list);
+	grepStrLen = input_grep(&grep);
+
+	resultLen = grep_process(&list, &grep, contentLen, grepStrLen, &lineResult);
+
+	if (resultLen) {
+		for (int i = 0; i < resultLen; i++) {
+			printf("%d = %s \n", i, lineResult[i]);
+		}
+	}
+}
+
+int grep_process(char *list, char *grep, int contentLen, int grepStrLen, char *lineResult[][GREP_RESULT_LEN])
+{
+	int m = 0;
+	int q = 0;
+	int u = 0;
+	int j = 0;
+	int isGrep = 0;
+	char line[500];
+
+	for (int k = 0; k < contentLen; k++) {
+
+		line[m++] = list[k];
+
+		if (list[k] == grep[j]) {
+			// 匹配字符的操作
+			j++;
+			if (j == grepStrLen) {
+				// 匹配已完成
+				isGrep = 1;
+			}
+		}
+		else {
+			// 只有连续的匹配才能算
+			j = 0;
+		}
+		if (list[k] == '\n') {
+			// 保存行的操作
+			if (isGrep) {
+				// 完成某次匹配， 存入结果数组中
+				line[m] = '\0';
+				strcpy(&(lineResult[u++]), &line[0]);
+
+				// 成功匹配完成， 初始化值准备下次匹配
+				line[0] = '\0';
+				m = 0;
+				j = 0;
+				isGrep = 0;
+
+				continue;
+			}
+			else {
+				line[0] = '\0';
+				m = 0;
+			}
+		}
+	}
+	return u;
+}
+
+int input_grep(char *grep)
+{
+	int len = 0;
+	scanf("%s", grep);
+	len = iStrlen(&grep[0]);
+	return len;
+}
+
+int load_file_content(char *list)
+{
+	FILE *fp;
+	int i = 0;
+	char c;
+	char fileName[FILE_NAME_LEN];
+
+	while ((c = getchar()) != '\n') {
+		fileName[i++] = c;
+	}
+	fileName[i] = '\0';
+	i = 0;
+
+	fp = fopen(fileName, "r");
+
+	while ((c = fgetc(fp)) > 0 ) {
+		list[i++] = c;
+	}
+	list[i] = '\0';
+	return i;
+ }
+
+int iStrlen(char *c)
+{
+	int i = 0;
+	while (*c++)
+		i++;
+	return i;
+}
