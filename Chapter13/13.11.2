@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+// 实现： Linux 中的 cp 命令 
+
+#define MAX_CONTENT_LEN 10000
+
+int main(int argc, char *argv[])
+{
+	if (argc != 3) {
+		puts("参数数量错误");
+		exit(0);
+	}
+
+	FILE *src;
+	FILE *tag;
+
+	if ((src = fopen(argv[1], "rb")) == NULL) {
+		puts("读取源文件错误");
+		exit(0);
+	}
+	
+	if ((tag = fopen(argv[2], "wb+")) == NULL) {
+		puts("目标文件创建失败");
+		exit(0);
+	}
+
+	int file_content_len = 0;
+	char ch;
+	while ((ch = fgetc(src)) != EOF) {
+		fputc(ch, tag);
+	}
+
+	return 0;
+}
+
+
