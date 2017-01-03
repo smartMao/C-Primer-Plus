@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<ctype.h>
+
+// 实现： 命令行中 输入两个文件， 交叉打印行
+
+int main(int argc, char *argv[])
+{
+	if (argc != 3) {
+		puts("参数数量错误");
+		exit(0);
+	}
+
+	char line[1000];
+	FILE *fp;
+	FILE *fp2;
+	fp = fopen(argv[1], "r");
+	fp2 = fopen(argv[2], "r");
+
+	while (!(feof(fp))) {
+		fgets(line, 1000, fp);
+		printf("%s", line);
+		fgets(line, 1000, fp);
+		printf("%s", line);
+	}
+
+	printf("\n");
+
+}
