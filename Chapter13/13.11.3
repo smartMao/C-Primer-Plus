@@ -34,6 +34,9 @@ int main(int argc, char *argv[])
 		fputc(toupper(ch), tag);
 	}
 
+	fclose(src);
+	fclose(tag);
+
 	return 0;
 }
 
