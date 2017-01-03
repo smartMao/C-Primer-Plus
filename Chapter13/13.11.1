@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+
+// 实现： 输入文件名， 计算此文件内的字符数量
+
+#define FILE_NAME_LEN 100
+
+main()
+{
+
+	int count = 0;
+	char ch = '\0';
+	FILE *fp;
+	int i = 0;
+	char c;
+	char fileName[FILE_NAME_LEN];
+
+	while ((c = getchar()) != '\n') {
+		fileName[i++] = c;
+	}
+	fileName[i] = '\0';
+	i = 0;
+
+	fp = fopen(fileName, "r");
+
+	while ((ch = getc(fp)) != EOF) {
+		count++;
+	}
+
+	printf("count = %d \n", count);
+}
