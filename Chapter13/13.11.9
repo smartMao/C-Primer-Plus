@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+// 实现： 命令参数指定一个文件名A， 程序创建或插入A中，根据scanf输入的单词，插入到文件A中，自动为单词进行保存，如果输入的第一个字符为s，代表结束
+
+
+#define MAX 50
+
+int main(int argc, char *argv[])
+{
+	if (argc != 2) {
+		exit(0);
+	}
+
+	FILE *fp;
+	if ((fp = fopen(argv[1], "r+")) == NULL) {
+		if ((fp = fopen(argv[1], "w+")) != NULL) {
+			fclose(fp);  // 创建文件`
+		}
+	}
+
+	if ((fp = fopen(argv[1], "a+")) == NULL) {
+		exit(0);
+	}
+
+	int i = 0;
+	char ch;
+	while (ch = fgetc(fp)) {
+		if (ch == '\n') {
+			i++;
+		}
+		if (ch == EOF) {
+			break;
+		}
+	}
+
+	char line[MAX];
+	while (fscanf(stdin, "%s", line) == 1 && line[0] != 's') {
+		i++;
+		fprintf(fp, "%d %s\n", i, line);
+	}
+
+	fclose(fp);
+}
+
