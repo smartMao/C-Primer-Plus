@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+// 生成程序运行所需要的数字阵列， 生成文件名为 numbers.txt 的文件
+#define LINE_NUM 20
+#define COLU_NUM 30
+
+int main(int argc, char *argv[])
+{
+	FILE *fp;
+	fp = fopen("numbers.txt", "w+");
+
+	for (int i = 0; i < LINE_NUM; i++) {
+		for (int k = 0; k < COLU_NUM; k++) {
+			switch (k) {
+				case 12:
+					fprintf(fp, "5");
+					break;
+				case 13:
+					fprintf(fp, "8");
+					break;
+				case 14:
+					fprintf(fp, "9");
+					break;
+				case 15:
+					fprintf(fp, "9");
+					break;
+				case 16:
+					fprintf(fp, "8");
+					break;
+				case 17:
+					fprintf(fp, "5");
+					break;
+				default:
+					if (i == 7) {
+						fprintf(fp, "5");
+					}
+					else if (i == 8) {
+						fprintf(fp, "8");
+					}
+					else if (i == 9) {
+						fprintf(fp, "9");
+					}
+					else if (i == 10) {
+						fprintf(fp, "8");
+					}
+					else if (i == 11) {
+						fprintf(fp, "5");
+					}
+					else {
+						fprintf(fp, "0");
+					}
+					break;
+			}
+		}
+		fprintf(fp, "\n");
+	}
+}
